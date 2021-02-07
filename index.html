@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>タイムラプス計算</title>
+	<meta name="description" content="">
+	<meta property="og:title" content="タイムラプス計算">
+	<!-- Fonts -->
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+	<!-- Styles -->
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.20.1/dist/bootstrap-vue.min.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="icon" href="./img/favicon.ico">
+	<link rel="apple-touch-icon" href="./img/apple-touch-icon.png" sizes="180x180">
+	<link rel="icon" type="image/png" href="./img/android-touch-icon.png" sizes="192x192">
+</head>
+
+<body>
+	<header class="py-3 bg-dark text-white">
+		<div class="container">
+			<h1>タイムラプス計算</h1>
+		</div>
+	</header>
+	<main id="app">
+		<div class="container py-5">
+			<div class="py-4">
+				<h2>計算</h2>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">
+						撮影間隔（秒）
+					</label>
+					<div class="col-sm-10">
+						<input type="number" v-model.number="shooting_interval_value" @change="onChangeInput()"
+							class="form-control">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">
+						撮影時間（分）
+					</label>
+					<div class="col-sm-10">
+						<input type="number" v-model.number="shooting_time_value" class="form-control"
+							@change="onChangeInput()">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">
+						フレームレート
+					</label>
+					<div class="col-sm-10">
+						<div class="form-check form-check-inline" v-for="option in frame_rate_items">
+							<input class="form-check-input" type="radio" v-bind:id="'frame_rate_' + option.value"
+								v-bind:value="option.value" v-model="frame_rate_value" @change="onChangeInput()">
+							<label class="form-check-label"
+								v-bind:for="'frame_rate_' + option.value">{{option.name}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">
+						再生時間
+					</label>
+					<div class="col-sm-10">
+						{{play_time}}
+					</div>
+				</div>
+			</div>
+			<div class="py-4">
+				<h2>使い方と注意事項</h2>
+				<ul>
+					<li class="mb-3">撮影間隔、撮影時間を入力し、フレームレートを選択することで、タイムラプス動画の再生時間を算出できます。</li>
+					<li class="mb-3">一個人が趣味の範疇で作成したものあり、本サイトを使用し生じたいかなる損害および損失などの被害についての責任は負いかねます。</li>
+				</ul>
+			</div>
+		</div>
+	</main>
+	<footer class="py-3 bg-dark text-white">
+		<div class="container">
+			<div class="small text-center">
+				&copy;2021 Retriever Works
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+	<script type="text/javascript" src="./js/script.js"></script>
+</body>
+
+</html>
