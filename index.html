@@ -34,8 +34,7 @@
 						撮影間隔（秒）
 					</label>
 					<div class="col-sm-10">
-						<input type="number" v-model.number="shooting_interval_value" @change="onChangeInput()"
-							class="form-control">
+						<input type="number" v-model.number="shooting_interval_value" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -43,8 +42,7 @@
 						撮影時間（分）
 					</label>
 					<div class="col-sm-10">
-						<input type="number" v-model.number="shooting_time_value" class="form-control"
-							@change="onChangeInput()">
+						<input type="number" v-model.number="shooting_time_value" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -54,7 +52,7 @@
 					<div class="col-sm-10">
 						<div class="form-check form-check-inline" v-for="option in frame_rate_items">
 							<input class="form-check-input" type="radio" v-bind:id="'frame_rate_' + option.value"
-								v-bind:value="option.value" v-model="frame_rate_value" @change="onChangeInput()">
+								v-bind:value="option.value" v-model="frame_rate_value">
 							<label class="form-check-label"
 								v-bind:for="'frame_rate_' + option.value">{{option.name}}</label>
 						</div>
@@ -67,6 +65,9 @@
 					<div class="col-sm-10">
 						{{play_time}}
 					</div>
+				</div>
+				<div class="text-center">
+					<button type="button" class="btn btn-primary" @click="onChangeInput()">計算</button>
 				</div>
 			</div>
 			<div class="py-4">
